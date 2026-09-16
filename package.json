@@ -1,0 +1,29 @@
+{
+  "name": "bob-the-big-orange-bike",
+  "version": "1.0.0",
+  "description": "Sale site for Bob, a 2022 Royal Enfield Interceptor 650.",
+  "private": true,
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "serve": "tsx test/support/static-server.ts",
+    "typecheck": "tsc",
+    "audit": "npm audit --audit-level=high"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magicobject/bob.git"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.5.1",
+    "sharp": "^0.35.4",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

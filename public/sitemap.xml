@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap <loc> entries must be absolute per the sitemaps.org spec.
+     Replace REPLACE-WITH-DOMAIN once this site has a real domain
+     (a *.pages.dev preview URL, or a custom domain). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://REPLACE-WITH-DOMAIN/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
