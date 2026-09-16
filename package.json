@@ -4,6 +4,7 @@
   "description": "Sale site for Bob, a 2020 Royal Enfield Interceptor 650.",
   "private": true,
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "optimize-images": "node scripts/optimize-images.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",

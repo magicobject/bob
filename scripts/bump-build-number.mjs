@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+// Increments build-number.json's per-day counter and stamps the new number
+// into every page's footer. Run once per commit (from the pre-commit hook)
+// — this repo has no templating build step (unlike kington-parishes), so
+// the footer's <span class="build-number"> is patched directly in each
+// public/*.html file rather than regenerated from a template.
+// Format: yyyy.mm.dd.xxx, xxx = build count for that day.
+
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const file = join(root, 'build-number.json');
+
+const today = new Date();
+const date = [
+  today.getFullYear(),
+  String(today.getMonth() + 1).padStart(2, '0'),
+  String(today.getDate()).padStart(2, '0'),
+].join('.');
+
+let state = { date, build: 0 };
+if (existsSync(file)) {
+  const saved = JSON.parse(readFileSync(file, 'utf8'));
+  if (saved.date === date) state = saved;
+}
+
+state.build += 1;
+const buildNumber = `${date}.${String(state.build).padStart(3, '0')}`;
+
+writeFileSync(file, JSON.stringify(state, null, 2) + '\n');
+
+const PAGES = ['public/index.html', 'public/404.html', 'public/updates.html'];
+for (const page of PAGES) {
+  const path = join(root, page);
+  if (!existsSync(path)) continue;
+  const html = readFileSync(path, 'utf8');
+  const patched = html.replace(/(<span class="build-number">Build )[^<]*(<\/span>)/, `$1${buildNumber}$2`);
+  if (patched !== html) writeFileSync(path, patched);
+}
+
+console.log(`Build number: ${buildNumber}`);

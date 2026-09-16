@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found | Bob the Big Orange Bike</title>
+<title>Site Updates | Bob the Big Orange Bike</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/css/style.css">
@@ -14,22 +14,31 @@
     <a class="brand" href="/index.html">Bob <span class="tag">the Big Orange Bike</span></a>
   </div>
 </header>
+
 <main id="main">
   <section>
     <div class="wrap">
       <div class="section-head">
-        <h1>Page not found</h1>
-        <p>That page doesn't exist — but Bob does. <a href="/index.html">Back to the listing</a>.</p>
+        <h1>Site updates</h1>
+        <p>An internal changelog: every build number and what changed. This page isn't linked from anywhere else on the site.</p>
       </div>
+      <ul class="changelog">
+        <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.16.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">16 September 2026</span></div>
+          <p>Added build-number versioning and this changelog page, matching kington-parishes' convention: a pre-commit hook bumps <code>build-number.json</code> and stamps the new number into the <a href="index.html">listing</a> and <a href="404.html">404</a> page footers, and every commit from here on gets tagged <code>build-YYYY.MM.DD.NNN</code> and logged here.</p>
+        </li>
+      </ul>
     </div>
   </section>
 </main>
+
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
     <span class="build-number">Build 2026.09.16.001</span>
   </div>
 </footer>
+
 <script src="/js/main.js"></script>
 </body>
 </html>

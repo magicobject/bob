@@ -49,6 +49,16 @@ test.describe('listing content', () => {
     const credit = page.getByRole('link', { name: 'mediawright.uk' });
     await expect(credit).toHaveAttribute('href', 'https://mediawright.uk');
   });
+
+  test('footer shows a build number', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('.build-number')).toHaveText(/Build \d{4}\.\d{2}\.\d{2}\.\d{3}/);
+  });
+
+  test('does not link to the internal updates changelog', async ({ page }) => {
+    await page.goto('/index.html');
+    await expect(page.locator('a[href*="updates.html"]')).toHaveCount(0);
+  });
 });
 
 test.describe('404 handling', () => {
@@ -57,5 +67,14 @@ test.describe('404 handling', () => {
     expect(response?.status()).toBe(404);
     await expect(page.getByRole('heading', { name: /page not found/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /back to the listing/i })).toHaveAttribute('href', '/index.html');
+  });
+});
+
+test.describe('updates changelog', () => {
+  test('is noindex and lists at least one build', async ({ page }) => {
+    await page.goto('/updates.html');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
+    await expect(page.getByRole('heading', { name: 'Site updates' })).toBeVisible();
+    await expect(page.locator('.changelog li').first().locator('.changelog-build')).toHaveText(/\d{4}\.\d{2}\.\d{2}\.\d{3}/);
   });
 });

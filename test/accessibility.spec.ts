@@ -1,8 +1,8 @@
 import { test, expect } from './support/fixtures';
 import { AxeBuilder } from '@axe-core/playwright';
-import { ALL_PAGES } from './support/pages';
+import { ALL_PAGES, UPDATES_PAGE } from './support/pages';
 
-const ALL_PATHS = [...ALL_PAGES.map((p) => p.path), '/404.html'];
+const ALL_PATHS = [...ALL_PAGES.map((p) => p.path), UPDATES_PAGE.path, '/404.html'];
 
 function formatViolations(violations: Awaited<ReturnType<AxeBuilder['analyze']>>['violations']): string {
   return violations

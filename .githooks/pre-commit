@@ -1,0 +1,5 @@
+#!/bin/sh
+# Bump the daily build number and stamp it into each page's footer before
+# every commit, so the committed footer can never drift from build-number.json.
+node scripts/bump-build-number.mjs || exit 1
+git add build-number.json public/index.html public/404.html public/updates.html
