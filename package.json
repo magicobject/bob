@@ -1,7 +1,7 @@
 {
   "name": "bob-the-big-orange-bike",
   "version": "1.0.0",
-  "description": "Sale site for Bob, a 2022 Royal Enfield Interceptor 650.",
+  "description": "Sale site for Bob, a 2020 Royal Enfield Interceptor 650.",
   "private": true,
   "scripts": {
     "optimize-images": "node scripts/optimize-images.mjs",

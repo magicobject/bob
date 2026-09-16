@@ -6,5 +6,5 @@ export interface SitePage {
 }
 
 export const ALL_PAGES: SitePage[] = [
-  { path: '/index.html', titleContains: 'Bob', heading: /bob: a 2022 royal enfield interceptor 650/i },
+  { path: '/index.html', titleContains: 'Bob', heading: /bob: a 2020 royal enfield interceptor 650/i },
 ];
