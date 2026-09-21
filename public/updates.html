@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.21.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">21 September 2026</span></div>
+          <p>Added the upgraded Royal Enfield touring seat to <a href="index.html">the upgrades list</a> and JSON-LD description — now eleven upgrades, not ten — and recomputed the JSON-LD script's CSP hash to match.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.09.17.002</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">17 September 2026</span></div>
           <p>The DNA high-performance air filter added to <a href="index.html">the upgrades list</a> — now ten upgrades, not nine — actually landed in the previous build (.001) rather than this one: <code>scripts/bump-build-number.mjs</code> used to run <code>git add</code> on every page unconditionally, which swept that still-unstaged edit into a commit whose message only mentioned the favicon. It now only patches and stages a page's footer if that page is already staged for the commit being made, so this can't happen again — see <code>CLAUDE.md</code>.</p>
         </li>
@@ -43,7 +47,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.17.002</span>
+    <span class="build-number">Build 2026.09.21.001</span>
   </div>
 </footer>
 

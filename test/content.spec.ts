@@ -18,9 +18,9 @@ test.describe('listing content', () => {
     await expect(email).toHaveCount(1);
   });
 
-  test('lists all ten upgrades', async ({ page }) => {
+  test('lists all eleven upgrades', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.locator('#upgrades .upgrade-card')).toHaveCount(10);
+    await expect(page.locator('#upgrades .upgrade-card')).toHaveCount(11);
   });
 
   test('maintenance history table has all four service entries', async ({ page }) => {
