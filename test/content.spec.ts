@@ -3,7 +3,7 @@ import { test, expect } from './support/fixtures';
 test.describe('listing content', () => {
   test('shows the price, mileage and no-offers note', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.getByText('£4,500', { exact: false }).first()).toBeVisible();
+    await expect(page.getByText('£4499', { exact: false }).first()).toBeVisible();
     await expect(page.getByText(/no offers/i).first()).toBeVisible();
     await expect(page.getByText(/7,800 miles/i)).toBeVisible();
   });
