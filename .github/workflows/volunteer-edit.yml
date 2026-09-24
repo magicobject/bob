@@ -14,6 +14,13 @@
 # Required repo secrets on the MANAGED repo (not siteadmin):
 #   SITEADMIN_ACTION_SECRET  — same value as siteadmin's ACTION_SHARED_SECRET
 #   ANTHROPIC_API_KEY        — for headless Claude Code
+#
+# The X-Siteadmin-Action-Marker header below is NOT a secret — see
+# ARCHITECTURE.md's "Perimeter: Cloudflare WAF". It exists only so a
+# Cloudflare custom rule on siteadmin's zone can let these two calls skip
+# Bot Fight Mode's JS challenge (which otherwise 403s a plain curl call
+# before it ever reaches the Worker); the real authentication is still
+# ACTION_SHARED_SECRET, checked inside the Worker in constant time.
 # GITHUB_TOKEN is provided automatically by Actions; permissions below grant
 # it what this workflow needs (no separate PAT required inside the Action
 # itself — the PAT/GitHub App siteadmin holds is only for triggering
@@ -53,6 +60,7 @@ jobs:
           response=$(curl -sS -w '\n%{http_code}' -X POST "$SITEADMIN_URL/internal/validate" \
             -H "Authorization: Bearer ${ACTION_SHARED_SECRET}" \
             -H "Content-Type: application/json" \
+            -H "X-Siteadmin-Action-Marker: edit-pipeline-v1" \
             -d "$payload")
           http_code=$(echo "$response" | tail -n1)
           body=$(echo "$response" | sed '$d')
@@ -184,4 +192,5 @@ jobs:
           curl -sS -X POST "$SITEADMIN_URL/internal/callback" \
             -H "Authorization: Bearer ${ACTION_SHARED_SECRET}" \
             -H "Content-Type: application/json" \
+            -H "X-Siteadmin-Action-Marker: edit-pipeline-v1" \
             -d "$payload"
