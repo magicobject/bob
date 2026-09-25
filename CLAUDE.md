@@ -19,7 +19,11 @@ The pre-commit hook (`.githooks/pre-commit`, wired up via `npm install`'s `prepa
 
 ## Security
 - Keep `npm run audit` clean before any push.
-- The inline JSON-LD `<script>` in `public/index.html` is allow-listed in `public/_headers` by SHA-256 hash (`script-src 'self' 'sha256-...'`), not `'unsafe-inline'`. **Any edit to that script's content requires recomputing the hash** — see the method used previously (hash the exact bytes between `>` and `</script>`, not a trimmed/reformatted copy) — and updating `_headers` to match, or the script is silently blocked in production. `npm run serve` does NOT apply `_headers` (Cloudflare-only convention) — this class of bug won't show up locally without `npx wrangler dev`.
+- The inline JSON-LD `<script>` in `public/index.html` is allow-listed in `public/_headers` by SHA-256 hash (`script-src 'self' 'sha256-...'`), not `'unsafe-inline'`. **This hash is never hand-maintained anymore** — `scripts/update-csp-hash.mjs` computes it from the exact bytes between `>` and `</script>` (not a trimmed/reformatted copy) and rewrites `_headers` to match. Three layers, because the volunteer-edit pipeline's automated commits happen *before* `npm ci` runs (so `core.hooksPath` isn't wired up yet at commit time — the git hook alone can't be trusted to catch a bot-driven edit):
+  1. `.githooks/pre-commit` runs it on every local commit (`--stage-if-index-staged`, same "only touch/stage the derived file when its source is already staged" rule `bump-build-number.mjs` uses) — catches it for a human committing directly.
+  2. `npm run build` runs it unconditionally — wire this in as the Cloudflare Pages build command (output directory stays `public`) so the deployed `_headers` is always regenerated from whatever `index.html` actually ships, regardless of how the commit was made.
+  3. `test/csp-hash.spec.ts` asserts the hash in `_headers` matches a fresh hash of `index.html`'s current JSON-LD — this runs in `npm test`, which the volunteer-edit Action gates auto-merge on, so a drifted hash from an automated edit holds for review instead of silently reaching production.
+  `npm run serve` does NOT apply `_headers` (Cloudflare-only convention) — this class of bug won't show up locally without `npx wrangler dev`.
 - Don't add third-party scripts, trackers, or embeds without adding whatever they need to `public/_headers`'s CSP first.
 
 ## Multi-developer workflow

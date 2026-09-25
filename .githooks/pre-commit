@@ -4,3 +4,8 @@
 # does its own `git add` — only for build-number.json and any page it
 # actually patched — so this hook never re-stages a file wholesale.
 node scripts/bump-build-number.mjs || exit 1
+
+# Keep public/_headers' CSP hash for the inline JSON-LD <script> in sync
+# with public/index.html — same "only stage the derived file when its
+# source is already staged" rule as above. See scripts/update-csp-hash.mjs.
+node scripts/update-csp-hash.mjs --stage-if-index-staged || exit 1

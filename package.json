@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "prepare": "git config core.hooksPath .githooks",
+    "build": "node scripts/update-csp-hash.mjs",
     "optimize-images": "node scripts/optimize-images.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
