@@ -101,6 +101,34 @@ a:hover, a:focus-visible { color: var(--ink); }
   padding: 6px 16px;
 }
 
+/* Section nav */
+.site-nav {
+  background: var(--charcoal);
+  border-top: 1px solid var(--line-dark);
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0 -12px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+.site-nav a {
+  display: block;
+  padding: 12px 12px;
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+.site-nav a:hover, .site-nav a:focus-visible {
+  color: var(--light-orange);
+  border-bottom-color: var(--orange);
+}
+.site-nav a:focus-visible { outline-color: var(--light-orange); }
+
 /* Hero */
 .hero {
   position: relative;
@@ -471,4 +499,6 @@ table.maintenance tbody tr:nth-child(even) { background: var(--paper-alt); }
 @media (max-width: 760px) {
   .about-grid { grid-template-columns: 1fr; }
   .hero-content { padding: 24px 0 28px; }
+  .site-nav ul { gap: 0 2px; margin: 0 -8px; }
+  .site-nav a { padding: 10px 8px; font-size: 0.9rem; }
 }
