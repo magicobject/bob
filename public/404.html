@@ -9,25 +9,73 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/index.html">Bob <span class="tag">the Big Orange Bike</span></a>
+    <span class="header-price">£4500 &middot; no offers</span>
   </div>
 </header>
+
 <main id="main">
-  <section>
+  <section class="lost">
+    <div class="wrap lost-grid">
+      <div class="lost-text">
+        <!-- A mechanical-odometer "404". Decorative only (the h1's eyebrow
+             says the same thing in text), so it's hidden from assistive tech.
+             Each strip rolls up through ten digits and settles on the last;
+             the settled position is the strip's own transform, so with no
+             animation (or reduced motion) it simply shows 00404. -->
+        <div class="odometer" aria-hidden="true">
+          <span class="odo-digit"><span class="odo-strip"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span></span></span>
+          <span class="odo-digit"><span class="odo-strip"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span></span></span>
+          <span class="odo-digit"><span class="odo-strip"><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></span></span>
+          <span class="odo-digit"><span class="odo-strip"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span></span></span>
+          <span class="odo-digit"><span class="odo-strip"><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></span></span>
+        </div>
+        <p class="odo-caption">That's this page's error code, not Bob's mileage. He's on about 7,800.</p>
+
+        <h1><span class="lost-eyebrow">404 &middot; Page not found</span> You've run out of road.</h1>
+        <p>Nothing lives at <span id="missing-path">this address</span>. Maybe the link was mistyped, maybe it pointed somewhere that doesn't exist any more, or maybe it just took a wrong turn at the roundabout. It happens to the best of us.</p>
+        <p>The good news: Bob's still here, still orange, and still £4500.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/index.html">Back to the listing</a>
+          <a class="btn btn-ghost" href="/index.html#gallery">See the photos</a>
+        </div>
+      </div>
+
+      <figure class="lost-photo">
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-03-480.webp 480w, /images/gallery-03-800.webp 800w, /images/gallery-03-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 480px">
+          <img src="/images/gallery-03-800.jpg" srcset="/images/gallery-03-480.jpg 480w, /images/gallery-03-800.jpg 800w, /images/gallery-03-1200.jpg 1200w" sizes="(max-width: 760px) 100vw, 480px" alt="Bob parked on a block-paved drive, left-side view of the orange tank, chrome engine and exhaust header" width="800" height="600" decoding="async">
+        </picture>
+        <figcaption>Bob, patiently waiting for you to find your way back.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-alt">
     <div class="wrap">
       <div class="section-head">
-        <h1>Page not found</h1>
-        <p>That page doesn't exist — but Bob does. <a href="/index.html">Back to the listing</a>.</p>
+        <h2>Get back on the road</h2>
+        <p>Pick a destination. Every one of these definitely exists.</p>
       </div>
+      <ul class="route-list">
+        <li><a href="/index.html#about"><strong>Meet Bob</strong><span>The story so far, and the key facts at a glance.</span></a></li>
+        <li><a href="/index.html#upgrades"><strong>The upgrades</strong><span>Tec controls, YSS suspension, that exhaust.</span></a></li>
+        <li><a href="/index.html#gallery"><strong>Photos</strong><span>Bob from every angle. He doesn't have a bad side.</span></a></li>
+        <li><a href="/index.html#history"><strong>Maintenance history</strong><span>Every service, fluid change and tyre, with dates.</span></a></li>
+        <li><a href="/index.html#contact"><strong>Interested in Bob?</strong><span>Call, text or email Greg.</span></a></li>
+      </ul>
     </div>
   </section>
 </main>
+
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.17.001</span>
+    <span class="build-number">Build 2026.09.26.006</span>
   </div>
 </footer>
 <script src="/js/main.js"></script>

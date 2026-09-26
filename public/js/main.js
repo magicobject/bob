@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // 404 page: show the path that wasn't found (textContent, so it's never
+  // parsed as HTML).
+  var missingPathEl = document.getElementById('missing-path');
+  if (missingPathEl) {
+    missingPathEl.textContent = window.location.pathname;
+    missingPathEl.classList.add('is-filled');
+  }
+
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(function (entries) {

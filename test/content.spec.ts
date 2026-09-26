@@ -87,6 +87,21 @@ test.describe('404 handling', () => {
     await expect(page.getByRole('heading', { name: /page not found/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /back to the listing/i })).toHaveAttribute('href', '/index.html');
   });
+
+  test('shows the missing path and links back into every listing section', async ({ page }) => {
+    await page.goto('/no-such-page.html');
+    await expect(page.locator('#missing-path')).toHaveText('/no-such-page.html');
+    for (const id of ['about', 'upgrades', 'gallery', 'history', 'contact']) {
+      await expect(page.locator(`.route-list a[href="/index.html#${id}"]`)).toHaveCount(1);
+    }
+  });
+
+  test('every section the 404 page links to exists on the listing', async ({ page }) => {
+    await page.goto('/index.html');
+    for (const id of ['about', 'upgrades', 'gallery', 'history', 'contact']) {
+      await expect(page.locator(`#${id}`)).toHaveCount(1);
+    }
+  });
 });
 
 test.describe('updates changelog', () => {
