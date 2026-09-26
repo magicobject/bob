@@ -31,3 +31,6 @@ The pre-commit hook (`.githooks/pre-commit`, wired up via `npm install`'s `prepa
 
 ## Site structure
 This is a hand-authored single-page static site — `public/index.html`, `public/404.html`, `public/updates.html`, `public/css/style.css`, `public/js/main.js`. There is no templating build step (unlike kington-parishes): edit the HTML/CSS/JS directly. Photos go through `node scripts/optimize-images.mjs`, which reads full-res originals from the gitignored `originals/` folder and writes the sized/compressed output actually served from `public/images/`.
+
+## Deployment
+The site is a static-assets-only Cloudflare Worker named `bob`, deployed by Workers Builds on every push to `main`. `wrangler.jsonc` is its config — keep `name` as `bob` (a different name deploys a separate Worker, leaving orangebob.uk on the old one), and keep `assets.not_found_handling: "404-page"`: without it Cloudflare answers unknown URLs with an empty 404 body instead of `public/404.html`. That shipped unnoticed once, because the local `npm run serve` server always serves `404.html` for unknown paths regardless — `test/wrangler-config.spec.ts` now guards the config itself. Verify 404/`_headers` behaviour with `npx wrangler dev`, not `npm run serve`.

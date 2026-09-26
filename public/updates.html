@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.26.008</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">26 September 2026</span></div>
+          <p>Unknown URLs now actually show the <a href="404.html">404 page</a> — Cloudflare was answering them with an empty 404 instead. Added a <code>wrangler.jsonc</code> telling the Worker to serve <code>404.html</code> for anything not found, and a test guarding that setting.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.09.26.007</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">26 September 2026</span></div>
           <p>Corrected the alt text on seven of the nine photos in <a href="index.html#gallery">the gallery</a> — they'd drifted out of step with the images they described (e.g. a left-side view labelled as a rear three-quarter shot). The lightbox reuses the alt text as its caption, so the captions are fixed too.</p>
         </li>
@@ -87,7 +91,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.26.007</span>
+    <span class="build-number">Build 2026.09.26.008</span>
   </div>
 </footer>
 
