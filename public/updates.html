@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.26.002</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">26 September 2026</span></div>
+          <p>Gave the copy on <a href="index.html">the listing</a> a lighter, more humorous tone — hero lede, "Meet Bob" text, upgrade card descriptions, photos intro and the contact/price wording. All factual details (price, mileage, dates, spec names, contact details, maintenance history table and JSON-LD) are unchanged.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.09.26.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">26 September 2026</span></div>
           <p>Test suite fixes, no visible change to <a href="index.html">the listing</a>. The price test now reads the price from the page's JSON-LD instead of hardcoding it (it was still expecting £4450 after the change to £4500). A new <code>.gitattributes</code> forces LF line endings on checkout, so the JSON-LD CSP hash computed on a Windows machine matches the deployed one. <code>scripts/update-csp-hash.mjs</code> now actually runs on Windows too — its run-directly check never matched a Windows path, so the pre-commit hook and <code>npm run build</code> silently skipped it there. Added type declarations for it so <code>npm run typecheck</code> passes again.</p>
         </li>
@@ -71,7 +75,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.26.001</span>
+    <span class="build-number">Build 2026.09.26.003</span>
   </div>
 </footer>
 
