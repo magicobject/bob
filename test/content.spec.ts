@@ -53,6 +53,16 @@ test.describe('listing content', () => {
     await expect(lightbox).toBeHidden();
   });
 
+  test('section menu links to every main section', async ({ page }) => {
+    await page.goto('/index.html');
+    const links = page.getByRole('navigation', { name: 'Page sections' }).getByRole('link');
+    await expect(links).toHaveCount(5);
+    for (const id of ['about', 'upgrades', 'gallery', 'history', 'contact']) {
+      await expect(page.locator(`.site-nav a[href="#${id}"]`)).toBeVisible();
+      await expect(page.locator(`section#${id}`)).toHaveCount(1);
+    }
+  });
+
   test('footer credits mediawright.uk', async ({ page }) => {
     await page.goto('/index.html');
     const credit = page.getByRole('link', { name: 'mediawright.uk' });
