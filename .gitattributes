@@ -1,0 +1,11 @@
+# Check text out with LF on every platform. public/_headers pins the inline
+# JSON-LD <script> by SHA-256 of its exact bytes, so a CRLF checkout (Git for
+# Windows' core.autocrlf default) hashes differently from what's deployed and
+# breaks test/csp-hash.spec.ts and the pre-commit hash update.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary

@@ -3,7 +3,16 @@ import { test, expect } from './support/fixtures';
 test.describe('listing content', () => {
   test('shows the price, mileage and no-offers note', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.getByText('£4450', { exact: false }).first()).toBeVisible();
+    // Read the price from the JSON-LD offer rather than hardcoding it, so a
+    // price change (often via the volunteer-edit pipeline) doesn't break this
+    // test — it still checks the visible price agrees with the structured data.
+    const jsonLd = JSON.parse(
+      (await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}',
+    );
+    const price: string = jsonLd.offers?.price;
+    expect(price, 'JSON-LD offers.price').toMatch(/^\d+$/);
+    await expect(page.locator('.header-price')).toContainText(`£${price}`);
+    await expect(page.locator('.price-banner .amount')).toHaveText(`£${price}`);
     await expect(page.getByText(/no offers/i).first()).toBeVisible();
     await expect(page.getByText(/7,800 miles/i)).toBeVisible();
   });

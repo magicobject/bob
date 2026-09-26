@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.26.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">26 September 2026</span></div>
+          <p>Test suite fixes, no visible change to <a href="index.html">the listing</a>. The price test now reads the price from the page's JSON-LD instead of hardcoding it (it was still expecting £4450 after the change to £4500). A new <code>.gitattributes</code> forces LF line endings on checkout, so the JSON-LD CSP hash computed on a Windows machine matches the deployed one. <code>scripts/update-csp-hash.mjs</code> now actually runs on Windows too — its run-directly check never matched a Windows path, so the pre-commit hook and <code>npm run build</code> silently skipped it there. Added type declarations for it so <code>npm run typecheck</code> passes again.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.09.25.002</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">25 September 2026</span></div>
           <p>The JSON-LD script's CSP hash in <code>public/_headers</code> is no longer hand-recomputed — <code>scripts/update-csp-hash.mjs</code> derives it from the actual script content, wired into the pre-commit hook, a new <code>npm run build</code> step (for the Cloudflare Pages build command), and a new test (<code>test/csp-hash.spec.ts</code>) that holds an out-of-sync hash for review instead of letting it reach production. Prompted by the volunteer-edit pipeline now being able to change the listing price without a human recomputing the hash by hand. Also fixed <code>.githooks/pre-commit</code> and <code>.githooks/pre-push</code> never having been committed executable, which meant this automation (and every prior build-number bump) never actually ran via git itself.</p>
         </li>
@@ -67,7 +71,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.25.002</span>
+    <span class="build-number">Build 2026.09.26.001</span>
   </div>
 </footer>
 

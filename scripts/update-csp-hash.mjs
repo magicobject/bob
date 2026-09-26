@@ -13,7 +13,7 @@
 // when its source is already part of the commit being made.
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -68,6 +68,9 @@ function main() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// pathToFileURL, not a hand-built `file://${argv[1]}` — on Windows that's
+// never equal to import.meta.url (backslashes, no third slash), so main()
+// silently never ran from the pre-commit hook or `npm run build` there.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main();
 }
