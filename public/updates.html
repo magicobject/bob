@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.09.29.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">29 September 2026</span></div>
+          <p>Updated development tools to current versions (tsx and the Node.js type definitions). They are only used to build and test the site and none of them ship to it: no page content changed, only this <a href="updates.html">updates</a> log.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.09.27.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">27 September 2026</span></div>
           <p>Added a daily vulnerability watch (ported from MediaWright): a GitHub Action checks every installed package against the GitHub Advisory Database and OSV each morning, opens a <code>security-advisory</code> issue per advisory, and fails the run on anything high or critical. Dependabot now proposes npm and Actions updates weekly, and <code>npm test</code> also runs the new unit tests. No pages changed.</p>
         </li>
@@ -95,7 +99,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.09.27.001</span>
+    <span class="build-number">Build 2026.09.29.001</span>
   </div>
 </footer>
 
