@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.10.19.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">19 October 2026</span></div>
+          <p>Backend-only change: the volunteer-edit pipeline now reports progress (working, merged, deploying, deployed) instead of saying a change is live the instant it merges, when the actual Cloudflare deploy hadn't happened yet. It also installs dependencies before Claude Code's own build step runs, so a change that needed <code>npm run build</code> to regenerate pages no longer merges with only the source files updated. No visible page changes.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.10.09.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">9 October 2026</span></div>
           <p>Removed the "early October" availability wording (and the "tissues optional" line) from <a href="index.html">the main page</a>, including the page descriptions and the "Available from" row in the spec list. Also updated sharp (an image-tooling dev dependency, not shipped to the site) to clear a high-severity advisory.</p>
         </li>
@@ -107,7 +111,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.10.09.001</span>
+    <span class="build-number">Build 2026.10.19.001</span>
   </div>
 </footer>
 
