@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.10.19.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">19 October 2026</span></div>
+          <p>Added a GitHub Action (<code>.github/workflows/claude-pr-automerge.yml</code>) that re-runs this repo's test suite and audit against every Claude-authored pull request, then merges, holds or asks Greg by name depending on the <code>AUTO_MERGE_LEVEL</code> repo setting (started on <code>standard</code>) and the PR's risk label. No pages changed, only this <a href="updates.html">updates</a> log.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.10.09.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">9 October 2026</span></div>
           <p>Removed the "early October" availability wording (and the "tissues optional" line) from <a href="index.html">the main page</a>, including the page descriptions and the "Available from" row in the spec list. Also updated sharp (an image-tooling dev dependency, not shipped to the site) to clear a high-severity advisory.</p>
         </li>
@@ -107,7 +111,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.10.09.001</span>
+    <span class="build-number">Build 2026.10.19.001</span>
   </div>
 </footer>
 
