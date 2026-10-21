@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 // Increments build-number.json's per-day counter and stamps the new number
-// into the footer of whichever pages are already staged for this commit —
-// this repo has no templating build step (unlike kington-parishes), so the
-// footer's <span class="build-number"> is patched directly in each
-// public/*.html file rather than regenerated from a template.
+// into public/updates.html's footer — the only page that carries a build
+// number. index.html and 404.html don't get touched on every commit, so a
+// build number there would just go stale; matching the convention in
+// kington-parishes and MediaWright, the build number lives only on the
+// unlinked /updates changelog page.
 // Format: yyyy.mm.dd.xxx, xxx = build count for that day.
 //
-// Deliberately does NOT patch+stage a page that isn't already part of this
-// commit: an earlier version unconditionally ran `git add` on all three
-// pages regardless of what was staged, which silently swept an unrelated,
+// Deliberately does NOT patch+stage updates.html unless it's already part
+// of this commit: an earlier version unconditionally ran `git add` on every
+// page regardless of what was staged, which silently swept an unrelated,
 // still-unstaged edit (the DNA air filter upgrade card) into a commit
 // whose message only described a favicon change (build 2026.09.17.001).
-// The tradeoff is that a page's footer now shows the build it was last
-// actually touched in, not necessarily the site's latest build overall.
+// Since updates.html needs a new changelog entry for every commit anyway,
+// it's always staged already, so this is mostly a defensive guard now.
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -46,7 +47,7 @@ const stagedFiles = execFileSync('git', ['diff', '--cached', '--name-only'], { c
   .split('\n')
   .filter(Boolean);
 
-const PAGES = ['public/index.html', 'public/404.html', 'public/updates.html'];
+const PAGES = ['public/updates.html'];
 for (const page of PAGES) {
   if (!stagedFiles.includes(page)) continue;
   const path = join(root, page);

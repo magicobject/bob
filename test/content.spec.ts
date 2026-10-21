@@ -69,9 +69,9 @@ test.describe('listing content', () => {
     await expect(credit).toHaveAttribute('href', 'https://mediawright.uk');
   });
 
-  test('footer shows a build number', async ({ page }) => {
+  test('footer has no build number', async ({ page }) => {
     await page.goto('/index.html');
-    await expect(page.locator('.build-number')).toHaveText(/Build \d{4}\.\d{2}\.\d{2}\.\d{3}/);
+    await expect(page.locator('.build-number')).toHaveCount(0);
   });
 
   test('does not link to the internal updates changelog', async ({ page }) => {
@@ -110,5 +110,17 @@ test.describe('updates changelog', () => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
     await expect(page.getByRole('heading', { name: 'Site updates' })).toBeVisible();
     await expect(page.locator('.changelog li').first().locator('.changelog-build')).toHaveText(/\d{4}\.\d{2}\.\d{2}\.\d{3}/);
+  });
+
+  test('footer shows a build number', async ({ page }) => {
+    await page.goto('/updates.html');
+    await expect(page.locator('.build-number')).toHaveText(/Build \d{4}\.\d{2}\.\d{2}\.\d{3}/);
+  });
+});
+
+test.describe('build number appears only on /updates', () => {
+  test('404 page has no build number', async ({ page }) => {
+    await page.goto('/no-such-page.html');
+    await expect(page.locator('.build-number')).toHaveCount(0);
   });
 });
