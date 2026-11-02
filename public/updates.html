@@ -24,6 +24,10 @@
       </div>
       <ul class="changelog">
         <li>
+          <div class="changelog-meta"><span class="changelog-build">2026.11.02.001</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">2 November 2026</span></div>
+          <p>Add the <code>previews</code> block Cloudflare's Workers Builds requires for preview deployments to <code>wrangler.jsonc</code> — it was failing with "Your Wrangler configuration is missing a <code>previews</code> block". No visible page changes.</p>
+        </li>
+        <li>
           <div class="changelog-meta"><span class="changelog-build">2026.10.21.002</span><span class="changelog-author">Greg Wright</span><span class="changelog-date">21 October 2026</span></div>
           <p>Backend-only change: the volunteer-edit pipeline now reports progress (working, merged, deploying, deployed) instead of saying a change is live the instant it merges, when the actual Cloudflare deploy hadn't happened yet. It also installs dependencies before Claude Code's own build step runs, so a change that needed <code>npm run build</code> to regenerate pages no longer merges with only the source files updated. No visible page changes.</p>
         </li>
@@ -119,7 +123,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>&copy; <span id="year"></span> Bob the Big Orange Bike. Site by <a href="https://mediawright.uk">mediawright.uk</a>.</span>
-    <span class="build-number">Build 2026.10.21.002</span>
+    <span class="build-number">Build 2026.11.02.001</span>
   </div>
 </footer>
 
