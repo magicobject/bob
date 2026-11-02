@@ -1,6 +1,7 @@
 {
   "name": "bob",
   "compatibility_date": "2026-08-07",
+  "previews": {},
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page",
