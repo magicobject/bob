@@ -32,7 +32,7 @@ test.describe('CSP hash for the inline JSON-LD script', () => {
     const originalJsonLd = extractJsonLd(original);
     const originalHash = computeCspHash(originalJsonLd);
 
-    const changedJsonLd = originalJsonLd.replace('"price": "4500"', '"price": "5000"');
+    const changedJsonLd = originalJsonLd.replace(/"price": "\d+"/, '"price": "999999"');
     expect(changedJsonLd).not.toBe(originalJsonLd);
 
     const changedHash = computeCspHash(changedJsonLd);
